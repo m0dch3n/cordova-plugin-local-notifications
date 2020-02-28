@@ -44,8 +44,8 @@ typedef NS_ENUM(NSUInteger, APPNotificationType) {
 
 - (NSArray*) getNotificationIdsByType:(APPNotificationType)type;
 
-- (UNNotificationRequest*) getNotificationWithId:(NSNumber*)id;
-- (APPNotificationType) getTypeOfNotificationWithId:(NSNumber*)id;
+- (UNNotificationRequest*) getNotificationWithId:(NSString*)id;
+- (APPNotificationType) getTypeOfNotificationWithId:(NSString*)id;
 
 - (NSArray*) getNotificationOptions;
 - (NSArray*) getNotificationOptionsById:(NSArray*)ids;

@@ -38,7 +38,7 @@ exports._defaults = {
     groupSummary  : false,
     icon          : null,
     iconType      : null,
-    id            : 0,
+    id            : '0',
     launch        : true,
     led           : true,
     lockscreen    : true,
@@ -165,7 +165,6 @@ exports.update = function (msgs, callback, scope, args) {
  */
 exports.clear = function (ids, callback, scope) {
     ids = this._toArray(ids);
-    ids = this._convertIds(ids);
 
     this._exec('clear', ids, callback, scope);
 };
@@ -193,7 +192,6 @@ exports.clearAll = function (callback, scope) {
  */
 exports.cancel = function (ids, callback, scope) {
     ids = this._toArray(ids);
-    ids = this._convertIds(ids);
 
     this._exec('cancel', ids, callback, scope);
 };
@@ -342,11 +340,9 @@ exports.get = function () {
         scope    = args[2];
 
     if (!Array.isArray(ids)) {
-        this._exec('notification', Number(ids), callback, scope);
+        this._exec('notification', ids, callback, scope);
         return;
     }
-
-    ids = this._convertIds(ids);
 
     this._exec('notifications', [3, ids], callback, scope);
 };
@@ -600,7 +596,7 @@ exports._convertProperties = function (options) {
     };
 
     if (options.id) {
-        options.id = parseToInt('id', options);
+        options.id = options.id.toString();
     }
 
     if (options.title) {
@@ -833,23 +829,6 @@ exports._createCallbackFn = function (fn, scope) {
     return function () {
         fn.apply(scope || this, arguments);
     };
-};
-
-/**
- * Convert the IDs to numbers.
- *
- * @param [ Array ] ids
- *
- * @return [ Array<Number> ]
- */
-exports._convertIds = function (ids) {
-    var convertedIds = [];
-
-    for (var i = 0, len = ids.length; i < len; i++) {
-        convertedIds.push(Number(ids[i]));
-    }
-
-    return convertedIds;
 };
 
 /**

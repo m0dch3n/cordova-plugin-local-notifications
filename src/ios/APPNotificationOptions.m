@@ -63,13 +63,11 @@ static NSInteger WEEKDAYS[8] = { 0, 2, 3, 4, 5, 6, 7, 1 };
 /**
  * The ID for the notification.
  *
- * @return [ NSNumber* ]
+ * @return [ NSString* ]
  */
-- (NSNumber*) id
+- (NSString*) id
 {
-    NSInteger id = [dict[@"id"] integerValue];
-
-    return [NSNumber numberWithInteger:id];
+    return dict[@"id"];
 }
 
 /**
@@ -154,7 +152,7 @@ static NSInteger WEEKDAYS[8] = { 0, 2, 3, 4, 5, 6, 7, 1 };
 - (NSString*) actionGroupId
 {
     id actions = dict[@"actions"];
-    
+
     return ([actions isKindOfClass:NSString.class]) ? actions : kAPPGeneralCategory;
 }
 

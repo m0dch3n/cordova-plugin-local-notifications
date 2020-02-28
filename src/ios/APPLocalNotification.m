@@ -127,7 +127,7 @@ UNNotificationPresentationOptions const OptionAlert = UNNotificationPresentation
 
     [self.commandDelegate runInBackground:^{
         for (NSDictionary* options in notifications) {
-            NSNumber* id = [options objectForKey:@"id"];
+            NSString* id = [options objectForKey:@"id"];
             UNNotificationRequest* notification;
 
             notification = [_center getNotificationWithId:id];
@@ -155,7 +155,7 @@ UNNotificationPresentationOptions const OptionAlert = UNNotificationPresentation
 - (void) clear:(CDVInvokedUrlCommand*)command
 {
     [self.commandDelegate runInBackground:^{
-        for (NSNumber* id in command.arguments) {
+        for (NSString* id in command.arguments) {
             UNNotificationRequest* notification;
 
             notification = [_center getNotificationWithId:id];
@@ -196,7 +196,7 @@ UNNotificationPresentationOptions const OptionAlert = UNNotificationPresentation
 - (void) cancel:(CDVInvokedUrlCommand*)command
 {
     [self.commandDelegate runInBackground:^{
-        for (NSNumber* id in command.arguments) {
+        for (NSString* id in command.arguments) {
             UNNotificationRequest* notification;
 
             notification = [_center getNotificationWithId:id];
@@ -230,14 +230,14 @@ UNNotificationPresentationOptions const OptionAlert = UNNotificationPresentation
 /**
  * Get type of notification.
  *
- * @param [ Int ] id The ID of the notification.
+ * @param [ String ] id The ID of the notification.
  *
  * @return [ Void ]
  */
 - (void) type:(CDVInvokedUrlCommand*)command
 {
     [self.commandDelegate runInBackground:^{
-        NSNumber* id = [command argumentAtIndex:0];
+        NSString* id = [command argumentAtIndex:0];
         NSString* type;
 
         switch ([_center getTypeOfNotificationWithId:id]) {
@@ -297,7 +297,7 @@ UNNotificationPresentationOptions const OptionAlert = UNNotificationPresentation
 /**
  * Notification by id.
  *
- * @param [ Number ] id The id of the notification to return.
+ * @param [ String ] id The id of the notification to return.
  *
  * @return [ Void ]
  */

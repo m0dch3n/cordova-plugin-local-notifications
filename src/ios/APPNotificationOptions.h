@@ -23,7 +23,7 @@
 
 @interface APPNotificationOptions : NSObject
 
-@property (readonly, getter=id)            NSNumber*            id;
+@property (readonly, getter=id)            NSString*            id;
 @property (readonly, getter=identifier)    NSString*            identifier;
 @property (readonly, getter=actionGroupId) NSString*            actionGroupId;
 @property (readonly, getter=title)         NSString*            title;
